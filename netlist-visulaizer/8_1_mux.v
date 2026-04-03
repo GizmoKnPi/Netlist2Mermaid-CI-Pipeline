@@ -16,6 +16,6 @@ module mux8_1_structural(
     // Instantiate one 2:1 MUX for the second stage
     // The inputs are the outputs from the first stage (y1, y2)
     // The select line s[2] (S2) controls which 4:1 MUX's output is chosen
-    mux2_1 stage2_mux (.i0(y1), .i1(y2), .s(sel[2]), .y(y));
+    mux2_1 stage2_mux (.i0(Y3), .i1(Y4), .s(sel[2]), .y(y));
 
 endmodule
