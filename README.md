@@ -1,7 +1,7 @@
 # My Capstone Hardware Project
 
 Here is the automated architecture diagram of my top-level module(s):
-### 📄 Architecture: `half_adder.v`
+### 📄 Architecture: `8_1_mux.v`
 ```mermaid
 graph LR;
     %% --- COLOR CLASSES ---
@@ -15,18 +15,23 @@ graph LR;
     classDef CUSTOM_MODULE fill:#8EE1E7,stroke:#333,stroke-width:2px,color:#000;
     classDef DEFAULT_MOD fill:#f9f9f9,stroke:#333,stroke-width:2px,stroke-dasharray: 3 3,color:#000;
 
-    LEGEND["<h4 style='margin:0px; padding-bottom:5px; color:black !important;'>IEC 60617 LEGEND</h4><div style='margin-bottom:4px; color:black !important;'><span style='display:inline-block; border:1px solid #333; background:#AEC6CF; padding:2px 8px; border-radius:3px; width:35px; text-align:center;'><b style='color:black !important;'>&amp;</b></span> AND_GATE</div><div style='margin-bottom:4px; color:black !important;'><span style='display:inline-block; border:1px solid #333; background:#CFCFC4; padding:2px 8px; border-radius:3px; width:35px; text-align:center;'><b style='color:black !important;'>=1</b></span> XOR_GATE</div>"]
+    LEGEND["<h4 style='margin:0px; padding-bottom:5px; color:black !important;'>IEC 60617 LEGEND</h4><div style='margin-bottom:4px; color:black !important;'><span style='display:inline-block; border:1px dashed #333; background:#f9f9f9; padding:2px 8px; border-radius:3px; width:35px; text-align:center;'><b style='color:black !important;'>⚙️</b></span> CUSTOM_MODULE</div>"]
     style LEGEND fill:#ffffff,stroke:#000,stroke-width:2px
     %% ----------------------------------
 
-    U1["U1<br><b>=1</b>"]:::XOR_GATE
-    a(["a"]) -->|in1| U1;
-    b(["b"]) -->|in2| U1;
-    U1 -->|out| sum(["sum"]);
-    U2["U2<br><b>&amp;</b>"]:::AND_GATE
-    a(["a"]) -->|in1| U2;
-    b(["b"]) -->|in2| U2;
-    U2 -->|out| carry(["carry"]);
+    stage1_mux1["stage1_mux1<br><b>mux4_1</b>"]:::DEFAULT_MOD
+    data_in_3_0_(["data_in[3:0]"]) -->|i| stage1_mux1;
+    sel_1_0_(["sel[1:0]"]) -->|s| stage1_mux1;
+    stage1_mux1 -->|y| y1(["y1"]);
+    stage1_mux2["stage1_mux2<br><b>mux4_1</b>"]:::DEFAULT_MOD
+    data_in_7_4_(["data_in[7:4]"]) -->|i| stage1_mux2;
+    sel_1_0_(["sel[1:0]"]) -->|s| stage1_mux2;
+    stage1_mux2 -->|y| y2(["y2"]);
+    stage2_mux["stage2_mux<br><b>mux2_1</b>"]:::DEFAULT_MOD
+    y1(["y1"]) -->|i0| stage2_mux;
+    y2(["y2"]) -->|i1| stage2_mux;
+    sel_2_(["sel[2]"]) -->|s| stage2_mux;
+    stage2_mux -->|y| y(["y"]);
 ```
 
 
