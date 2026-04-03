@@ -10,8 +10,8 @@ module mux8_1_structural(
     // The outputs of the first stage are y1 and y2
     // The inputs are split into two 4-bit groups
     // The select lines s[1:0] (S1 and S0) are shared
-    mux4_1 stage1_mux1 (.i(data_in[3:0]), .s(sel[1:0]), .y(y1));
-    mux4_1 stage1_mux2 (.i(data_in[7:4]), .s(sel[1:0]), .y(y2));
+    mux4_1 stage1_mux1 (.i(data_in[3:0]), .s(sel[1:0]), .y(Y3));
+    mux4_1 stage1_mux2 (.i(data_in[7:4]), .s(sel[1:0]), .y(Y4));
 
     // Instantiate one 2:1 MUX for the second stage
     // The inputs are the outputs from the first stage (y1, y2)
