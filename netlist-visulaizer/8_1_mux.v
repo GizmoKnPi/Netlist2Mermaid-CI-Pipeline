@@ -3,7 +3,7 @@ module mux8_1_structural(
     input [2:0] sel,     // 3-bit select line vector (S0-S2)
     output y             // Output
 );
-    // Declare intermediate wires to connect the sub-modules
+    // Declare intemediate wires to connect the sub-modules
     wire Y3, Y4;
 
     // Instantiate two 4:1 MUXs for the first stage
