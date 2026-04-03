@@ -19,14 +19,14 @@ graph LR;
     stage1_mux1["stage1_mux1<br><b>mux4_1</b>"]:::DEFAULT_MOD
     data_in_3_0_(["data_in[3:0]"]) -->|i| stage1_mux1;
     sel_1_0_(["sel[1:0]"]) -->|s| stage1_mux1;
-    stage1_mux1 -->|y| Y3(["Y3"]);
+    stage1_mux1 -->|y| y1(["y1"]);
     stage1_mux2["stage1_mux2<br><b>mux4_1</b>"]:::DEFAULT_MOD
     data_in_7_4_(["data_in[7:4]"]) -->|i| stage1_mux2;
     sel_1_0_(["sel[1:0]"]) -->|s| stage1_mux2;
-    stage1_mux2 -->|y| Y4(["Y4"]);
+    stage1_mux2 -->|y| y2(["y2"]);
     stage2_mux["stage2_mux<br><b>mux2_1</b>"]:::DEFAULT_MOD
-    Y3(["Y3"]) -->|i0| stage2_mux;
-    Y4(["Y4"]) -->|i1| stage2_mux;
+    y1(["y1"]) -->|i0| stage2_mux;
+    y2(["y2"]) -->|i1| stage2_mux;
     sel_2_(["sel[2]"]) -->|s| stage2_mux;
     stage2_mux -->|y| y(["y"]);
 ```
