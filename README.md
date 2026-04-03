@@ -1,6 +1,6 @@
 # My Capstone Hardware Project
 
-Here is the automated architecture diagram of my top-level module(s) 'barrel_shifter.v':
+Here is the automated architecture diagram of my top-level module(s) barrel_shifter.v:
 
 ### 📄 Architecture: `8_1_mux.v`
 ```mermaid
