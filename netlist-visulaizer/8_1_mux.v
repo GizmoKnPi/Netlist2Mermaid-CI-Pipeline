@@ -4,7 +4,7 @@ module mux8_1_structural(
     output y             // Output
 );
     // Declare intermediate wires to connect the sub-modules
-    wire y3, y4;
+    wire y2, y3;
 
     // Instantiate two 4:1 MUXs for the first stage
     // The outputs of the first stage are y1 and y2
