@@ -5,15 +5,15 @@ import argparse
 
 def parse_netlist_to_mermaid(netlist_text):
     
-    # 1. Pre-processing: Strip all comments
+    #Pre-processing: Strip all comments
     netlist_text = re.sub(r'/\*.*?\*/', '', netlist_text, flags=re.DOTALL)
     netlist_text = re.sub(r'//.*', '', netlist_text)
 
-    # 2. Extract Inputs/Outputs
+    #Extract Inputs/Outputs
     inputs = set(re.findall(r'\binput\s+(?:wire\s+|reg\s+)?(?:\[.*?\]\s+)?([a-zA-Z0-9_]+)', netlist_text))
     outputs = set(re.findall(r'\boutput\s+(?:wire\s+|reg\s+)?(?:\[.*?\]\s+)?([a-zA-Z0-9_]+)', netlist_text))
 
-    # 3. Extract Instances
+    #Extract Instances
     instance_pattern = re.compile(r'\b([a-zA-Z_][a-zA-Z0-9_]*)\s+([a-zA-Z_][a-zA-Z0-9_\[\]:]*)\s*\((.*?)\)\s*;', re.DOTALL)
     raw_instances = instance_pattern.findall(netlist_text)
     
@@ -62,7 +62,7 @@ def parse_netlist_to_mermaid(netlist_text):
         print('    style LEGEND fill:#ffffff,stroke:#000,stroke-width:2px')
         print('    %% ----------------------------------\n')
 
-    # 4. Draw blocks and wires
+    #Draw blocks and wires
     for inst_type, inst_name, ports_str in instances:
         
         safe_node_id = inst_name.replace('[', '_').replace(']', '_').replace(':', '_')
@@ -83,7 +83,7 @@ def parse_netlist_to_mermaid(netlist_text):
         for port_name, sig_name in ports:
             sig_name = sig_name.strip()
             
-            # FIX 1: Sanitize apostrophes (') out of Node IDs for constants like 1'b0
+           
             safe_sig_id = sig_name.replace('[', '_').replace(']', '_').replace(':', '_').replace("'", "_")
             
             base_sig_match = re.match(r'^([a-zA-Z0-9_]+)', sig_name)
@@ -95,7 +95,6 @@ def parse_netlist_to_mermaid(netlist_text):
             elif 'out' in port_name.lower() or port_name.lower() == 'y':
                 is_output = True
             
-            # FIX 2: Added double quotes ([\"{sig_name}\"]) to protect brackets from Mermaid parser!
             if is_output:
                 print(f"    {safe_node_id} -->|{port_name}| {safe_sig_id}([\"{sig_name}\"]);")
             else:
