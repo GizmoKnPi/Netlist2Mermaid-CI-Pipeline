@@ -1,3 +1,6 @@
+# My Capstone Hardware Project
+
+Here is the automated architecture diagram of my top-level module:
 
 ```mermaid
 graph LR;
@@ -30,3 +33,6 @@ graph LR;
     sel_2_(["sel[2]"]) -->|s| stage2_mux;
     stage2_mux -->|y| y(["y"]);
 ```
+
+## Project Details
+Write your normal documentation down here.
